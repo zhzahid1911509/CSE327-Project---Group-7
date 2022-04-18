@@ -43,6 +43,8 @@
 
         
            <div class="container" align="center" style="padding:100px">
+           
+            <!-- This loop is checking whether any info is updated or not if updated it will give a message -->
 
             @if(session()->has('message'))
 
@@ -56,6 +58,8 @@
                 </div>
 
                 @endif
+                
+                   <!-- Creating necessary fields and taking info from the user -->
 
            <form action="{{url('editdoctor',$data->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
