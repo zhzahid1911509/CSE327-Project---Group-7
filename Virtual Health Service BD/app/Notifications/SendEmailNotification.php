@@ -40,7 +40,14 @@ class SendEmailNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->greeting($this->details['greeting'])
+                    ->line($this->details['body'])
+                    ->action($this->details['actiontext'], $this->details['actionurl'])
+                    ->line($this->details['endpart']);
+    }
 
     /**
      * Get the array representation of the notification.
