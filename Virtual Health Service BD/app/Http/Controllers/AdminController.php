@@ -50,3 +50,9 @@ create variables for taking user inputs and storing
       $data = appointment::all();
     return view('admin.showappointment', compact('data'));
    }
+   
+   public function showdoctor() /* function to show doctor list*/
+   {
+       $data = doctor::all();
+       return view('admin.showdoctor',compact('data'));
+   }
