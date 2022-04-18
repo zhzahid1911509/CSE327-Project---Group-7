@@ -112,3 +112,28 @@ create variables for taking user inputs and storing
       return redirect()->back()->with('message','Doctor info updated succssfully');
 
    }
+   public function emailview($id)
+   {
+      $data=appointment::find($id);
+      return view('admin.email_view',compact('data'));
+   }
+   public function sendemail(Request $request, $id)
+   {
+      $data=appointment::find($id);
+
+      $details=[
+         'greeting'=> $request->greeting,
+         'body'=> $request->body,
+         'actiontext'=> $request->actiontext,
+         'actionurl'=> $request->actionurl,
+         'endpart'=> $request->endpart
+
+      ];
+
+      Notification::send($data, new SendEmailNotification($details) );
+      return redirect()->back()->with('message', 'Emaild send');
+   }
+
+
+}
+
