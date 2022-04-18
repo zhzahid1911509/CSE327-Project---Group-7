@@ -13,6 +13,9 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
+        /**
+         * creating necessary columns with datatypes for the database table 'appointments'
+         */
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
