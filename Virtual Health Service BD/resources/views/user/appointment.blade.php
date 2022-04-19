@@ -1,7 +1,7 @@
 <div class="page-section">
     <div class="container">
       <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
-      <--! user input variables for taking appointment -->
+
       <form class="main-form" action="{{url('appointment')}}" method="POST">
         @csrf
         <div class="row mt-5 ">
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
+        <button type="submit" style="color:black" class="btn btn-success">Submit Request</button>
       </form>
     </div>
   </div> <!-- .page-section -->

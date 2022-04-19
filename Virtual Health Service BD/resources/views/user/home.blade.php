@@ -8,7 +8,7 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>Viryual Health Service BD</title>
+  <title>One Health - Medical Center HTML5 Template</title>
 
   <link rel="stylesheet" href="../assets/css/maicons.css">
 

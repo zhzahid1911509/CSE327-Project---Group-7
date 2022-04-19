@@ -71,20 +71,10 @@
                         <label> Speciality</label>
                         <select name="speciality" style="color:black; width:220px" required="">
                         <option value="">--Select--</option>
-                        
-                        <option value="Cardiology">Cardiology</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Psychiatry">Psychiatry</option>
-                        <option value="Respiratory medicine">Respiratory medicine</option>
-                        <option value="Rheumatology">Rheumatology</option>
-                        <option value="Nephrology">Nephrology</option>
-                        <option value="Endocrinology and Metabolism">Endocrinology and Metabolism</option>
-                        <option value="Dermatology and Venereology">Dermatology and Venereology</option>
-                        <option value="Gastroenterology">Gastroenterology</option>
-                        <option value="Hepatology">Hepatology</option>
-                        <option value="Hematology">Hematology</option>
-                        <option value="Oncology">Oncology</option>
-                        <option value="Internal Medicine"> Internal Medicine</option>
+                            <option value="skin">Skin</option>
+                            <option value="heart">Heart</option>
+                            <option value="eye">Eye</option>
+                            <option value="nose">Nose</option>
                         </select>
                     </div>
 
