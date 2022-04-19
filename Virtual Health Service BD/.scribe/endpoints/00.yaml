@@ -1,0 +1,62 @@
+name: 'Update Doctor Information'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: 'editdoctor/{id}'
+    metadata:
+      title: 'This function is used to update doctor information in the database'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the editdoctor.'
+        required: true
+        example: aut
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      $doctor->name:
+        name: $doctor->name
+        description: 'updating doctor name'
+        required: false
+        example: velit
+        type: for
+        custom: []
+      $doctor->phone:
+        name: $doctor->phone
+        description: 'updating doctor phone number'
+        required: false
+        example: ipsum
+        type: for
+        custom: []
+      $doctor->speciality:
+        name: $doctor->speciality
+        description: 'updating doctor specialization'
+        required: false
+        example: reprehenderit
+        type: for
+        custom: []
+      $doctor->room:
+        name: $doctor->room
+        description: 'updating doctor office room number'
+        required: false
+        example: nihil
+        type: for
+        custom: []
+      $image:
+        name: $image
+        description: 'updating doctor profile photo'
+        required: false
+        example: tenetur
+        type: for
+        custom: []
+    responses: []
+    responseFields: []
