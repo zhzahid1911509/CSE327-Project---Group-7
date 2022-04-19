@@ -7,85 +7,103 @@ use App\Models\Doctor;
 use App\Models\Appointment;
 use Notification;
 use App\Notifications\SendEmailNotification;
-// use Illuminate\Support\Facades\Validator;
+
+/**
+ * @group Admin Functionalities
+ *
+ * APIs to manage admin resources
+ */
 
 class AdminController extends Controller
 {
-   public function addview()
+   /**
+    * Display of listing of the resources
+    *
+    *@return ResourceCollection
+    */
+   public function addview() /*function to show the interface of the 'Add Doctor' feature*/
    {
     return view('admin.add_doctor');
    }
-   public function upload(Request $request)
+   public function upload(Request $request) /* function to store the information of doctors into the database*/
    {
-      // $validated = $request->validate([
-   //       'name' => 'required | max:255',
-   //       'phone' => 'required',
-   //       'room' => 'required',
-   //       'speciality' => 'required'
-   //   ]);
-    $doctor=new doctor;
-    $image=$request->file;
-    $imagename=time().'.'.$image->getClientOriginalExtension();
-    $request->file->move('doctorimage', $imagename);
-    $doctor->image=$imagename;
+    $doctor = new doctor; /*create a variable for the database table 'doctor'*/
 
-    $doctor->name=$request->name;
-    $doctor->phone=$request->number;
-    $doctor->room=$request->room;
-    $doctor->speciality=$request->speciality;
+    $image = $request->file;
+    $imageName = time().'.'.$image->getClientOriginalExtension();
+    $request->file->move('doctorimage', $imageName);
+    $doctor->image = $imageName;
+/*
+create variables for taking user inputs and storing
+*/
+    $doctor->name = $request->name;
+    $doctor->phone = $request->number;
+    $doctor->room = $request->room;
+    $doctor->speciality = $request->speciality;
 
-    $doctor->save();
+    $doctor->save(); // save doctor info to the database
     return redirect()->back()->with('message','Doctor Added Successfully');
-   
+
    }
-   public function showappointment()
+   public function showappointment() /*function to show requested appointment */
    {
-      $data=appointment::all();
+      $data = appointment::all();
     return view('admin.showappointment', compact('data'));
    }
-   public function approved($id)
+   public function approved($id) /* function to approve valid appointment requests*/
    {
-      $data=appointment::find($id);
+      $data = appointment::find($id);
       $data->status='approved';
       $data->save();
       return redirect()->back();
    }
-   public function canceled($id)
+   public function canceled($id) /* function to cancel invalid appointment requests*/
    {
-      $data=appointment::find($id);
-      $data->status='Canceled';
+      $data = appointment::find($id);
+      $data->status = 'Canceled';
       $data->save();
       return redirect()->back();
    }
-   public function showdoctor()
+   public function showdoctor() /* function to show doctor list*/
    {
-       $data=doctor::all();
+       $data = doctor::all();
        return view('admin.showdoctor',compact('data'));
    }
-   public function deletedoctor ($id)
+   public function deletedoctor ($id) /**  function to delete doctor info from database */
    {
-      $data=doctor::find($id);
+      $data = doctor::find($id);
 
       $data->delete();
 
       return redirect()->back();
    }
-   public function updatedoctor($id)
+   public function updatedoctor($id) // function to show update doctor info option
    {
       $data=doctor::find($id);
       return view('admin.update_doctor', compact('data'));
    }
-   public function editdoctor(Request $request, $id)
+   /**
+   *@group Update Doctor Information
+   *
+   *This function is used to update doctor information in the database
+   *
+   *@bodyParam $doctor->name for updating doctor name
+   *@bodyParam $doctor->phone for updating doctor phone number
+   *@bodyParam $doctor->speciality for updating doctor specialization
+   *@bodyParam $doctor->room for updating doctor office room number
+   *@bodyParam $image for updating doctor profile photo
+   */
+   public function editdoctor(Request $request, $id) /* function to update doctor info */
    {
-      $doctor=doctor::find($id);
+      $doctor = doctor::find($id);
 
-      $doctor->name=$request->name;
+      $doctor->name = $request->name;
 
-      $doctor->phone=$request->phone;
+      $doctor->phone = $request->phone;
 
-      $doctor->speciality=$request->speciality;
+      $doctor->speciality = $request->speciality;
 
-      $doctor->room=$request->room;
+      $doctor->room = $request->room;
 
       $image=$request->file;
 
@@ -94,24 +112,24 @@ class AdminController extends Controller
          $imagename=time().'.'.$image->getClientOriginalExtension();
 
          $request->file->move('doctorimage',$imagename);
-   
+
          $doctor->image=$imagename;
 
       }
 
-      $doctor->save();
+      $doctor->save(); /*save updated info to the database*/
 
       return redirect()->back()->with('message','Doctor info updated succssfully');
 
    }
-   public function emailview($id)
+   public function emailview($id) /* function to show email notification sending option*/
    {
       $data=appointment::find($id);
       return view('admin.email_view',compact('data'));
    }
-   public function sendemail(Request $request, $id)
+   public function sendemail(Request $request, $id) /*function to send user verification email*/
    {
-      $data=appointment::find($id);
+      $data = appointment::find($id);
 
       $details=[
          'greeting'=> $request->greeting,
